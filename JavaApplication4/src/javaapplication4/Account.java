@@ -7,6 +7,7 @@ class Account
  
     
     private double Balance = 0.0;
+    private String Psswrd = " ";
     private String Name = " j";
     private boolean Active = true;
     private double FirstDep = 0.0;
@@ -294,6 +295,18 @@ public void getIn()
         this.Interest = hyaT;
         
     }
+    
+    public void SetPsswrd(String ps)
+    {
+        this.Psswrd = ps;
+    }
+    
+    public String GetPsswrd()
+    {
+        return this.Psswrd;
+    }
+    
+    
     
     
 

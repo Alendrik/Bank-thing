@@ -1,5 +1,6 @@
 package javaapplication4;
 
+import java.awt.image.RescaleOp;
 import java.util.ArrayList;
 import java.util.Scanner;
 import jdk.nashorn.internal.ir.BreakNode;
@@ -22,6 +23,7 @@ public class JavaApplication4
         dog.FirstDeposit(100);
         dog.Setstrtdt(2,2016);
         dog.CelcIn();
+        dog.SetPsswrd("Bone");
         
         Account cat = new Account();
         cat.SetName("Cat");
@@ -29,6 +31,7 @@ public class JavaApplication4
         cat.FirstDeposit(80000);
         cat.Setstrtdt(8,1980);
         cat.CelcIn();
+        cat.SetPsswrd("Fish");
         
         Account fish = new Account();
         fish.SetName("Fish");
@@ -36,13 +39,15 @@ public class JavaApplication4
         fish.FirstDeposit(700);
         fish.Setstrtdt(1,1999);
         fish.CelcIn();
+        fish.SetPsswrd("SEAWEED");
         
         Account mongoose = new Account();
         mongoose.SetName("Mongoose");
-        mongoose.setAccNum(67);
+        mongoose.setAccNum(69);
         mongoose.FirstDeposit(598123.66);
         mongoose.Setstrtdt(4,2006);
         mongoose.CelcIn();
+        mongoose.SetPsswrd("Idk");
         
         Account orca = new Account();
         orca.SetName("Orca");
@@ -50,6 +55,7 @@ public class JavaApplication4
         orca.FirstDeposit(786.33);
         orca.Setstrtdt(3,2015);
         orca.CelcIn();
+        orca.SetPsswrd("Fosh");
         
         Accountssss.add(dog);
         Accountssss.add(cat);
@@ -126,19 +132,25 @@ public class JavaApplication4
             }
             System.out.println("");
             int flio = Mike.nextInt();
+            System.out.println("Please enter the password for Your account.");
+            String pol =Mike.next();
             
             
-            if (dog.contains(dog.get(flio-1)))
+            if (dog.contains(dog.get(flio-1)) && dog.get(flio - 1).GetPsswrd().equals(pol))
             {
             AccMng(dog.get(flio -1).GITNAME(), dog.get(flio - 1));
-            }else
+            }
+            else
             {
-                System.out.println("IT seems that we dont have that. Would you like to make a new account?");
+                System.out.println("Wrong Password or That account doesnt exist. Would you like to make a new account(New-Acc) or reset pass(Res-Pass?");
                 String hij = Mike.next();
-                if (hij.equalsIgnoreCase("Yes"))
+                if (hij.equalsIgnoreCase("New-Acc"))
                 {
                     NewAcc(dog);
-                }else
+                }else if ( hij.equalsIgnoreCase("Res-Pass"))
+                 {
+                       ResetPass();
+                 }else
                 {
                     return;
                 }
@@ -189,6 +201,16 @@ public class JavaApplication4
         
    }
     
+    public static void ResetPass()
+    {Scanner jok = new Scanner(System.in);
+    
+        System.out.println("What do you want your new password to be?");
+        String you = jok.next();
+        
+        System.out.println("Your password has been reset!");
+        
+    }
+    
     public static void AccMng(String jug, Account lot)
     {
         Scanner ko = new Scanner(System.in);
@@ -201,7 +223,7 @@ public class JavaApplication4
         System.out.println("\nWhat would you like to do with your account? (Type what is inside the parenthesis next to the action to do it)"
                 + "\nWould you like to Deposit (Deposit) ,Withdraw (withdraw) ,View balance (Balance)"
                 + "\nView Balance History (BalHistory),See your first deposit (FirstDeposit) ,View your interest (Interest)"
-                + "\nSee if you are active (active) ,date opened (dtOpened) ,Change your name (chngName) or sign-out (Sign-out).");
+                + "\nSee if you are active (active) ,date opened (dtOpened) ,Change your name (chngName) ,Change your password(Chng-Pass) or sign-out (Sign-out).");
         String chose = ko.next();
         
     if(chose.equalsIgnoreCase("Deposit"))
@@ -215,6 +237,9 @@ public class JavaApplication4
         if (huew.equalsIgnoreCase("Sign-out"))
         {
             jo=false;
+        }else if (huew.equalsIgnoreCase("Chng-Pass"))
+        {
+            ResetPass();
         }else if(huew.equalsIgnoreCase("options") )
         {
             jo = true;
@@ -405,15 +430,19 @@ public class JavaApplication4
             int oi = NOOB.nextInt();
            System.out.println("What do you want the name of your account to be?");
            String juh = NOOB.next();
+           
            System.out.println("How much would you like your first deposit to be in this account?");
            mongo = NOOB.nextDouble();
+            System.out.println("And finally what do you want your password to be.");
+            String y = NOOB.next();
            k.add(new Account());
            k.get(start+i).SetName(juh);
            k.get(start+i).Setstrtdt(io, oi);
            k.get(start+i).FirstDeposit(mongo);
+           k.get(start + i).SetPsswrd(y);
             System.out.println("You made the new account " + juh+ " which is holding "+mongo+ " dollars!");
             k.get(start + i).setAccNum(i * start+87);
-            System.out.println("Your account number is "+ k.get(start + i).gitAccnum()+". Made in "+k.get(start+i).gitstrtdt());
+            System.out.println("Your account number is "+ k.get(start + i).gitAccnum()+". Made in "+k.get(start+i).gitstrtdt()+". And your Password is "+ k.get(start+i).GetPsswrd());
             k.get(start+i).CelcIn();
        
         }
@@ -450,9 +479,11 @@ public class JavaApplication4
                 accnum++;
                 System.out.println(d.GITNAME()+"'s initial deposit was "+ d.GitFirstDep()+" made on "+ d.gitstrtdt() +". their Account number is "+d.gitAccnum());//ADD INTEREST SUCH AS d.GitNAME's interest paid out was d.git interest.
                 totbal = totbal + d.ViewBel();
+               
                 System.out.println(d.GITNAME()+"'s account number is "+d.gitAccnum());
-                System.out.println(d.GITNAME() + "'s accont interest is " + d.gitIn());
+                System.out.println(d.GITNAME() + "'s account interest is " + d.gitIn());
                 totInt = totInt + d.gitIn();
+                System.out.println(d.GITNAME() + "'s password is " + d.GetPsswrd());
                 System.out.println("");
             }
          
