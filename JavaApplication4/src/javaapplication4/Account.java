@@ -23,6 +23,8 @@ class Account
     private ArrayList<String> Withdrawals = new ArrayList<>();
     private ArrayList<String> Deposits    = new ArrayList<>();    
 
+    
+    
 public void SetName(String gose)
 {
     this.Name = gose;
@@ -61,16 +63,6 @@ public void Setstrtdt(int u,int o)
 //    currdt = strtdt;
 }
 
-//public void IncDate(int inc,int[] date)  
-//{
-//    date[0] += inc;
-//    if(date[0] > 12) 
-//    {
-//        date[1] += date[0] / 12;
-//        date[0] %= 12;
-//    }
-//
-//}
 
 public void Getstrtdt()
 {
